@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('holidays', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId("hairdresser_id");
-            $table->foreignId("location_id");
+            $table->foreignId("barber_id");
             $table->date("start_date");
             $table->date("end_date");
         });
