@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->dateTime("start_time");
-            $table->dateTime("end_time");
-            $table->double("price");
+            $table->decimal("price");
             $table->foreignId("barber_id");
             $table->foreignId("customer_id");
-            $table->foreignId("services");
+            //$table->foreignId("services"); -THIS IS REPLACED BY A CONNECTING TABLE'S ID-
+            $table->boolean("active");
         });
     }
 

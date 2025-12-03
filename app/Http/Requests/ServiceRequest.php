@@ -24,7 +24,8 @@ class ServiceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "service"=>["required","alpha_num","unique:services"]
+            "service"=>["required","alpha_num","unique:services"],
+            "required_time"=>["required","time"]
         ];
     }
 
@@ -32,7 +33,10 @@ class ServiceRequest extends FormRequest
         return[
             "service.required"=>"A mező kitöltése kötelező",
             "service.alpha_num"=>"A mezőben csak betűk és számok lehetnek",
-            "service.unique"=>"Ilyen adat már létezik"
+            "service.unique"=>"Ilyen adat már létezik",
+
+            "required_time.required"=>"A mező kitöltése kötelező",
+            "required_time.time"=>"A mezőnek idő formátumban kell átadni az adatot"
         ];
     }
 

@@ -8,7 +8,9 @@ class Service extends Model
 {
     public $timestamps = false;
 
+    /*
     public function reservation(){
         return $this->hasMany(reservation::class);
     }
+        */
 }

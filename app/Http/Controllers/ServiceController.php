@@ -7,19 +7,31 @@ use Illuminate\Http\Request;
 use App\Models\Service;
 use App\Requests\ServiceRequest;
 
-class ServiceController extends ResponseController
+use App\Traits\ResponseTrait;
+
+class ServiceController extends Controller
 {
-    public function getService(){
+
+    use ResponseTrait;
+
+    public function getServices(){
         $services=Service::all();
 
         $this->sendResponse($services);
     }
 
+    public function getService($id){
+        $service=Service::find($id);
+
+        $this->sendResponse($service);
+    }
+
     public function create(ServiceRequest $request){
-        $request->validated();
+        $validRequest=$request->validated();
 
         $service=new Service;
-        $service->service=$request["service"];
+        $service->service=$validRequest["service"];
+        $service->required_time=$validRequest["required_time"];
 
         $service->save();
 
@@ -27,7 +39,7 @@ class ServiceController extends ResponseController
     }
 
     public function update(ServiceRequest $request,$id){
-        $request->validated();
+        $validRequest=$request->validated();
 
         $service=Service::find($id);
 
@@ -37,11 +49,12 @@ class ServiceController extends ResponseController
 
         }
         else{
-            $service->service=$request["service"];
+            $service->service=$validRequest["service"];
+            $service->required_time=$validRequest["required_time"];
 
             $service->update();
 
-            return $this->sendResponse( $package, "Sikeres módosítás" );
+            return $this->sendResponse( $service, "Sikeres módosítás" );
         }
     }
 
@@ -58,7 +71,7 @@ class ServiceController extends ResponseController
         else {
             $service->delete();
 
-            return $this->sendResponse( $package, "Sikeres törlés" );
+            return $this->sendResponse( $service, "Sikeres törlés" );
         }
     }
 }

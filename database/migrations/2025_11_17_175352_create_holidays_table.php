@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId("barber_id");
             $table->date("start_date");
             $table->date("end_date");
+            //TODO:Delete?
         });
     }
 
