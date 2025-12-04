@@ -22,6 +22,8 @@ Route::delete("/service/{id}",[ServcieController::class,"destroy"]);
 //RESERVATIONS
 Route::get("/reservation",[ReservationController::class,"getReservations"]);
 Route::get("/reservation/{id}",[ReservationController::class,"getReservation"]);
+Route::get("/activereservation",[ReservationController::class,"getActiveReservations"]); //?
+Route::get("/reservation/{barber_id}",[ReservationController::class,"getBarberReservation"]); //?
 Route::post("/reservation",[ReservationController::class,"create"]);
 Route::put("/reservation/{id}",[ReservationController::class,"update"]);
 Route::delete("/reservation/{id}",[ReservationController::class,"destroy"]);

@@ -13,16 +13,38 @@ class ReservationController extends Controller
     use ResponseTrait;
 
     public function getReservations(){
-        $reservations=Reservation::all();
+        $reservations=Reservation::all()->get();
 
         $this->sendResponse($reservations);
     }
     
     public function getReservation($id){
-        $reservation=Reservation::find($id);
+        $reservation=Reservation::find($id)->get();
 
         $this->sendResponse($reservation);
     }
+
+    public function getActiveReservations(){//FULLY UNTESTED!
+        $reservations=Reservation::where("active",true)->get();
+
+        $this->sendResponse($reservations);
+    }
+
+    public function getBarberReservations($barber_id){//FULLY UNTESTED!
+        $reservations=Reservation::where("barber_id",$barber_id)->get();
+
+        $this->sendResponse($reservations);
+    }
+
+    /*
+    NEED TO FIGURE OUT HOW TO DO THIS!
+
+    public function getBarberActiveReservations($barber_id){
+        $reservations=Reservation::where("barber_id",$barber_id)->get();
+
+        $this->sendResponse($reservations);
+    }
+    */
 
     public function create(ReservationRequest $request){
         $validRequest=$request->validated();

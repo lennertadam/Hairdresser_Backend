@@ -22,13 +22,30 @@ class ReservationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //TODO
+            "start_time"=>["required","date"], //REQUIRES A TIME IN DATETIME FORMAT
+            "price"=>["required","decimal:2"], //EVERY PRICE NEEDS TO HAVE 2 DECIMAL (Example: 4.00,10.33)
+            "barber_id"=>["required","integer"],
+            "customer_id"=>["required","integer"],
+            "active"=>["required","boolean"]
         ];
     }
 
     public function messages(){
         return[
-            //TODO
+            "start_time.required"=>"A mező kitöltése kötelező",
+            "start_time.date"=>"A mező csak datetime formátumot fogad",
+
+            "price.required"=>"A mező kitöltése kötelező",
+            "price.decimal"=>"A mezőnek 2 tizedes ponjának kell lennie",
+            
+            "barber_id.required"=>"A mező kitöltése kötelező",
+            "barber_id.integer"=>"A mezőnek egész számnak kell lennie",
+
+            "customer_id.required"=>"A mező kitöltése kötelező",
+            "customer_id.integer"=>"A mezőnek egész számnak kell lennie",
+
+            "active.required"=>"A mező kitöltése kötelező",
+            "active.boolean"=>"A mezőnek igaz/hamis értéknek kell lennie"
         ];
     }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal("price");
             $table->foreignId("barber_id");
             $table->foreignId("customer_id");
-            //$table->foreignId("services"); -THIS IS REPLACED BY A CONNECTING TABLE'S ID-
+            //$table->foreignId("services"); -THIS IS REPLACED BY A CONNECTING TABLE-
             $table->boolean("active");
         });
     }

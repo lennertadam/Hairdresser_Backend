@@ -25,7 +25,7 @@ class ServiceRequest extends FormRequest
     {
         return [
             "service"=>["required","alpha_num","unique:services"],
-            "required_time"=>["required","time"]
+            "required_time"=>["required"] //CANNOT SET IT SO ONLY TIME FORMAT IS ACCEPTED
         ];
     }
 
