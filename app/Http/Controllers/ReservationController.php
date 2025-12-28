@@ -13,38 +13,42 @@ class ReservationController extends Controller
     use ResponseTrait;
 
     public function getReservations(){
-        $reservations=Reservation::all()->get();
+        $reservations=Reservation::all();
 
-        $this->sendResponse($reservations);
+        return $this->sendResponse($reservations);
     }
     
     public function getReservation($id){
         $reservation=Reservation::find($id)->get();
 
-        $this->sendResponse($reservation);
+        return $this->sendResponse($reservation);
     }
 
-    public function getActiveReservations(){//FULLY UNTESTED!
+    public function getActiveReservations(){
         $reservations=Reservation::where("active",true)->get();
 
-        $this->sendResponse($reservations);
+        return $this->sendResponse($reservations);
     }
 
-    public function getBarberReservations($barber_id){//FULLY UNTESTED!
+    public function getBarberReservations($barber_id){
         $reservations=Reservation::where("barber_id",$barber_id)->get();
 
-        $this->sendResponse($reservations);
+        return $this->sendResponse($reservations);
     }
 
-    /*
-    NEED TO FIGURE OUT HOW TO DO THIS!
+    public function getCustomerReservations($customer_id){
+        $reservations=Reservation::where("customer_id",$customer_id)->get();
+
+        return $this->sendResponse($reservations);
+    }
+
 
     public function getBarberActiveReservations($barber_id){
-        $reservations=Reservation::where("barber_id",$barber_id)->get();
+        $reservations=Reservation::where(["barber_id"=>$barber_id,"active"=>true])->get();
 
-        $this->sendResponse($reservations);
+        return $this->sendResponse($reservations);
     }
-    */
+    
 
     public function create(ReservationRequest $request){
         $validRequest=$request->validated();
@@ -53,8 +57,8 @@ class ReservationController extends Controller
         
         $reservation->start_time=$validRequest["start_time"];
         $reservation->price=$validRequest["price"];
-        $reservation->barber_id=$validRequest["barber_id"];
-        $reservation->customer_id=$validRequest["customer_id"];
+        $reservation->barber_id=(new UserController)->getUserId($validRequest["barber_id"]); //POTENTIALLY THE PROBLEM (Changed to have the "getUserId" part)
+        $reservation->customer_id=(new UserController)->getUserId($validRequest["customer_id"]);  //POTENTIALLY THE PROBLEM (Changed to have the "getUserId" part)
         $reservation->active=$validRequest["active"];
 
         $reservation->save();

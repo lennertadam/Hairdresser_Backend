@@ -3,8 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\ServcieController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ReservationController;
+
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\UserController;
 
 /*
 Route::get('/user', function (Request $request) {
@@ -12,18 +15,25 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 */
 
+//TEST
+Route::get("/test",[TestController::class,"test1"]);
+Route::get("/users",[UserController::class,"getUsers"]);
+Route::get("/userId",[TestController::class,"userIdTest"]);
+
 //SERVICES
-Route::get("/service",[ServcieController::class,"getServices"]);
-Route::get("/service/{id}",[ServcieController::class,"getServices"]);
-Route::post("/service",[ServcieController::class,"create"]);
-Route::put("/service/{id}",[ServcieController::class,"update"]);
-Route::delete("/service/{id}",[ServcieController::class,"destroy"]);
+Route::get("/service",[ServiceController::class,"getServices"]);
+Route::get("/service/{id}",[ServiceController::class,"getService"]);
+Route::post("/service",[ServiceController::class,"create"]);
+Route::put("/service/{id}",[ServiceController::class,"update"]);
+Route::delete("/service/{id}",[ServiceController::class,"destroy"]);
 
 //RESERVATIONS
 Route::get("/reservation",[ReservationController::class,"getReservations"]);
 Route::get("/reservation/{id}",[ReservationController::class,"getReservation"]);
-Route::get("/activereservation",[ReservationController::class,"getActiveReservations"]); //?
-Route::get("/reservation/{barber_id}",[ReservationController::class,"getBarberReservation"]); //?
+Route::get("/activeReservation",[ReservationController::class,"getActiveReservations"]);
+Route::get("/barberReservation/{barber_id}",[ReservationController::class,"getBarberReservations"]);
+Route::get("/customerReservation/{customer_id}",[ReservationController::class,"getCustomerReservations"]);
+Route::get("/barberActiveReservation/{barber_id}",[ReservationController::class,"getBarberActiveReservations"]);
 Route::post("/reservation",[ReservationController::class,"create"]);
 Route::put("/reservation/{id}",[ReservationController::class,"update"]);
 Route::delete("/reservation/{id}",[ReservationController::class,"destroy"]);

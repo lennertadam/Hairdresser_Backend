@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Service;
-use App\Requests\ServiceRequest;
+use App\Http\Requests\ServiceRequest;
 
 use App\Traits\ResponseTrait;
 
@@ -14,16 +14,38 @@ class ServiceController extends Controller
 
     use ResponseTrait;
 
+
+
     public function getServices(){
         $services=Service::all();
 
-        $this->sendResponse($services);
+        return $this->sendResponse($services);
     }
+
+
+    //Didn't work!
+
+    // public function getServices(){
+    //     $services=Service::where("reservation")->get();
+
+    //     return $this->sendResponse($services);
+    // }
+
+
+    //DIDN'T WORK!!!
+
+    // public function getServices(){
+    //     $sql="SELECT * FROM services";
+
+    //     $services=DB::select($sql);
+
+    //     return $this->sendResponse($services);
+    // }
 
     public function getService($id){
         $service=Service::find($id);
 
-        $this->sendResponse($service);
+        return $this->sendResponse($service);
     }
 
     public function create(ServiceRequest $request){
