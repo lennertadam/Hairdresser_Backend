@@ -57,8 +57,8 @@ class ReservationController extends Controller
         
         $reservation->start_time=$validRequest["start_time"];
         $reservation->price=$validRequest["price"];
-        $reservation->barber_id=(new UserController)->getUserId($validRequest["barber_id"]); //POTENTIALLY THE PROBLEM (Changed to have the "getUserId" part)
-        $reservation->customer_id=(new UserController)->getUserId($validRequest["customer_id"]);  //POTENTIALLY THE PROBLEM (Changed to have the "getUserId" part)
+        $reservation->barber_id=$validRequest["barber_id"];
+        $reservation->customer_id=$validRequest["customer_id"];
         $reservation->active=$validRequest["active"];
 
         $reservation->save();
