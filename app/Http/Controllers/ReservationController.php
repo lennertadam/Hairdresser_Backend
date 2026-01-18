@@ -56,6 +56,7 @@ class ReservationController extends Controller
         $reservation=new Reservation;
         
         $reservation->start_time=$validRequest["start_time"];
+        $reservation->end_time=$validRequest["end_time"];
         $reservation->price=$validRequest["price"];
         $reservation->barber_id=$validRequest["barber_id"];
         $reservation->customer_id=$validRequest["customer_id"];
@@ -79,6 +80,7 @@ class ReservationController extends Controller
         else{
 
             $reservation->start_time=$validRequest["start_time"];
+            $reservation->end_time=$validRequest["end_time"];
             $reservation->price=$validRequest["price"];
             $reservation->barber_id=$validRequest["barber_id"];
             $reservation->customer_id=$validRequest["customer_id"];

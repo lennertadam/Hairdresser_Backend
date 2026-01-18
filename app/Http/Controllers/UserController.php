@@ -15,13 +15,13 @@ class UserController extends Controller
     use ResponseTrait;
     
     
-    public function getUserId( $username ){
+//     public function getUserId( $username ){
 
-        // $userName=$user->username;
+//         // $userName=$user->username;
 
-        $foundUser=User::where("username",$username)->first();
-        $id=$foundUser->id;
+//         $foundUser=User::where("username",$username)->first();
+//         $id=$foundUser->id;
 
-        return $foundUser->id;
-    }
+//         return $foundUser->id;
+//     }
 }
