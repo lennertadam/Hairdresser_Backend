@@ -18,12 +18,12 @@ class AdminController extends Controller
     public function giveAdmin($username){
         $user=User::where("username",$username)->first();
 
-        if ($user->role==100/*AdminRole*/ or 150 /*SuperadminRole*/) {
+        if ($user->role=="admin"/*Admin Role*/ or "super-admin" /*Superadmin Role*/) {
             return $this->sendError("Művelet nem végrehajtható", "A felhasználó már admin vagy szuperadmin",401);
         }
         else {
 
-        $user->role=100;//AdminRole goes here
+        $user->role="admin";//Admin Role
 
         $user->update();
 
