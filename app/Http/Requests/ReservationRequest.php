@@ -23,7 +23,8 @@ class ReservationRequest extends FormRequest
     {
         return [
             "start_time"=>["required","date"], //REQUIRES A TIME IN DATETIME FORMAT
-            "price"=>["required","decimal:2"], //EVERY PRICE NEEDS TO HAVE 2 DECIMAL (Example: 4.00,10.33)
+            "end_time"=>["required","date"],
+            "price"=>["required","integer"], //EVERY PRICE NEEDS TO HAVE 2 DECIMAL (Example: 4.00,10.33)
             "barber_id"=>["required","integer"],
             "customer_id"=>["required","integer"],
             "active"=>["required","boolean"]
