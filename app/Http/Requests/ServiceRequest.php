@@ -25,7 +25,8 @@ class ServiceRequest extends FormRequest
     {
         return [
             "service"=>["required","alpha_num"],
-            "required_time"=>["required"] //CANNOT SET IT SO ONLY TIME FORMAT IS ACCEPTED
+            "required_time"=>["required"], //CANNOT SET IT SO ONLY TIME FORMAT IS ACCEPTED
+            "price"=>["required","integer"]
         ];
     }
 
@@ -36,7 +37,11 @@ class ServiceRequest extends FormRequest
             //NEED TO CHANGE THIS SO IT DOESN'T ACTIVATE ON PUT WHEN ONLY CHANGING THE TIME
 
             "required_time.required"=>"A mező kitöltése kötelező",
-            "required_time.time"=>"A mezőnek idő formátumban kell átadni az adatot"
+            "required_time.time"=>"A mezőnek idő formátumban kell átadni az adatot",
+
+            "price.required"=>"A mező kitöltése kötelező",
+            "price.integer"=>"A mezőnek egész számnak kell lennie"
+
         ];
     }
 
