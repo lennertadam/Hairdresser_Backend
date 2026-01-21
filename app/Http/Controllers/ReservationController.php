@@ -53,6 +53,10 @@ class ReservationController extends Controller
     public function create(ReservationRequest $request){
         $validRequest=$request->validated();
 
+        if($validRequest["start_time"]>$validRequest["end_time"]){
+                return $this->sendError("Művelet nem végrehajtható","A kezdeti időpont később van mint a vég időpont",400);
+        }
+
         $reservation=new Reservation;
         
         $reservation->start_time=$validRequest["start_time"];
@@ -78,13 +82,17 @@ class ReservationController extends Controller
 
         }
         else{
-
+            if($validRequest["start_time"]>$validRequest["end_time"]){
+                return $this->sendError("Művelet nem végrehajtható","A kezdeti időpont később van mint a vég időpont",400);
+            }
             $reservation->start_time=$validRequest["start_time"];
             $reservation->end_time=$validRequest["end_time"];
             $reservation->price=$validRequest["price"];
             $reservation->barber_id=$validRequest["barber_id"];
             $reservation->customer_id=$validRequest["customer_id"];
             $reservation->active=$validRequest["active"];
+
+            
 
             $reservation->update();
 
