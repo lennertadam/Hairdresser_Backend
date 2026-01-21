@@ -24,4 +24,17 @@ class UserController extends Controller
 
 //         return $foundUser->id;
 //     }
+
+    public function getUsers(){
+        $users=User::all();
+
+        return $this->sendResponse($users);
+    }
+
+    public function getBarbers(){
+        $barbers=User::where("role","barber")->get();
+
+        return $this->sendResponse($barbers);
+    }
+
 }
