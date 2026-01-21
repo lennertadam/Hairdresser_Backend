@@ -117,5 +117,20 @@ class ReservationController extends Controller
         }
     }
 
+
+    public function setInactive($id){
+        $reservation=Reservation::find($id);
+
+        if( is_null( $reservation )) {
+
+            return $this->sendError( "Művelet nem végrehajtható", "Nem létezik ilyen rekord", 405 );
+
+        }
+        else{
+            $reservation->active=false;
+            $reservation->update();
+            return $this->sendResponse( $reservation, "Sikeres inaktivitás jelölés" );
+        }
+    }
     
 }

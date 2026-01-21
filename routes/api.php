@@ -36,4 +36,5 @@ Route::get("/customerReservation/{customer_id}",[ReservationController::class,"g
 Route::get("/barberActiveReservation/{barber_id}",[ReservationController::class,"getBarberActiveReservations"]);
 Route::post("/reservation",[ReservationController::class,"create"]);
 Route::put("/reservation/{id}",[ReservationController::class,"update"]);
+Route::put("/inactiveReservation/{id}",[ReservationController::class,"setInactive"]);
 Route::delete("/reservation/{id}",[ReservationController::class,"destroy"]);
