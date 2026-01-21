@@ -40,7 +40,7 @@ class ReservationRequest extends FormRequest
             "end_time.date"=>"A mező csak datetime formátumot fogad",
 
             "price.required"=>"A mező kitöltése kötelező",
-            "price.decimal"=>"A mezőnek 2 tizedes ponjának kell lennie",
+            "price.integer"=>"A mezőnek egész számnak kell lennie",
             
             "barber_id.required"=>"A mező kitöltése kötelező",
             "barber_id.integer"=>"A mezőnek egész számnak kell lennie",
