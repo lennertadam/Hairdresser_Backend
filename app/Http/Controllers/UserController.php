@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\RegisterRequest;
+use App\Services\RegisterService;
 
 use App\Models\User;
 
@@ -13,17 +15,20 @@ use App\Traits\ResponseTrait;
 class UserController extends Controller
 {
     use ResponseTrait;
-    
-    
-//     public function getUserId( $username ){
 
-//         // $userName=$user->username;
+    protected RegisterService $registerService;
 
-//         $foundUser=User::where("username",$username)->first();
-//         $id=$foundUser->id;
+    public function __construct(RegisterService $registerService){
+        $this->registerService=$registerService;
+        /* Include token service here when it works */    
+    }
 
-//         return $foundUser->id;
-//     }
+    public function register( RegisterRequest $request ) {
+
+        $validated = $request->validated();
+
+        return $this->registerService->create( $validated );
+    }
 
     public function getUsers(){
         $users=User::all();
@@ -36,5 +41,7 @@ class UserController extends Controller
 
         return $this->sendResponse($barbers);
     }
+
+    
 
 }
