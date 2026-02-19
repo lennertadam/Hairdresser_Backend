@@ -24,6 +24,11 @@ Route::get("/userId",[TestController::class,"userIdTest"]);
 Route::get("/user",[UserController::class,"getUsers"]);
 Route::get("/barber",[UserController::class,"getBarbers"]);
 
+Route::post("/register",[UserController::class,"register"]);
+Route::post("/login",[UserController::class,"login"]);
+Route::post( "/logout", [ UserController::class, "logout" ]);
+
+
 //SERVICES
 Route::get("/service",[ServiceController::class,"getServices"]);
 Route::get("/service/{id}",[ServiceController::class,"getService"]);
