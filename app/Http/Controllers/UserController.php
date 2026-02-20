@@ -24,11 +24,11 @@ class UserController extends Controller
     use ResponseTrait;
 
     protected RegisterService $registerService;
-        protected TokenService $tokenService;
+    protected TokenService $tokenService;
 
-    public function __construct(RegisterService $registerService){
+    public function __construct(RegisterService $registerService, TokenService $tokenService){
         $this->registerService=$registerService;
-        $this->tokenService = $tokenService; 
+        $this->tokenService=$tokenService; 
     }
 
     public function register( RegisterRequest $request ) {

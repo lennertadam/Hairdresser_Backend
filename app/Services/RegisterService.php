@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 class RegisterService
 {
 
+    use ResponseTrait;
+
     public function __construct()
     {
     

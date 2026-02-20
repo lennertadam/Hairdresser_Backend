@@ -32,4 +32,34 @@ class AdminController extends Controller
             
         }
     }
+
+    public function revokeRole($username){
+        $user=User::where("username",$username)->first();
+
+        $user->role="user";
+
+        $user->update();
+
+        return $this->sendResponse( $reservation, "Sikeres módosítás" );
+    }
+
+    public function giveBarber($username){
+        $user=User::where("username",$username)->first();
+
+        $user->role="barber";
+
+        $user->update();
+
+        return $this->sendResponse( $reservation, "Sikeres módosítás" );
+    }
+
+    public function makeInactive($username){
+        $user=User::where("username",$username)->first();
+
+        $user->role="inactive";
+
+        $user->update();
+
+        return $this->sendResponse( $reservation, "Sikeres módosítás" );
+    }
 }
