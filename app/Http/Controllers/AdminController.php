@@ -13,8 +13,6 @@ class AdminController extends Controller
     use ResponseTrait;
 
     //Superadmin level function to give someone admin role
-    //UNTESTED (Need to change how roles work before testing)
-    //Also, remember to make a revokeAdmin function as well
 
     public function giveAdmin($username){
         $user=User::where("username",$username)->first();
@@ -53,7 +51,7 @@ class AdminController extends Controller
         return $this->sendResponse( $reservation, "Sikeres módosítás" );
     }
 
-    public function makeInactive($username){
+    public function giveInactive($username){
         $user=User::where("username",$username)->first();
 
         $user->role="inactive";

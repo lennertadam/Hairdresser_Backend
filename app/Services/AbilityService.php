@@ -53,6 +53,8 @@ class AbilityService
             "users:create",
             "users:update",
 
+            "services:read",
+
             "reservations:read",
             "reservations:create",
             "reservations:update",
