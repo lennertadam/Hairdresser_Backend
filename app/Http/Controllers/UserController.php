@@ -49,6 +49,7 @@ class UserController extends Controller
 
             $response =  [
 
+                    "id"=>$authUser->id,
                     "username" => $authUser->username,
                     "role" => $authUser->role,
                     "email" => $authUser->email,
