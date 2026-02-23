@@ -26,6 +26,9 @@ Route::get("/userId",[TestController::class,"userIdTest"]);
 Route::post("/register",[UserController::class,"register"]);
 Route::post("/login",[UserController::class,"login"]);
 
+Route::get("/service",[ServiceController::class,"getServices"]);
+Route::get("/service/{id}",[ServiceController::class,"getService"]);
+
 Route::middleware([ "auth:sanctum" ])->group( function() {
     Route::post( "/logout", [ UserController::class, "logout" ]);
 
@@ -39,8 +42,7 @@ Route::middleware([ "auth:sanctum" ])->group( function() {
     Route::put("/giveInactive",[AdminController::class,"giveInactive"]);
 
     //SERVICES
-    Route::get("/service",[ServiceController::class,"getServices"]);
-    Route::get("/service/{id}",[ServiceController::class,"getService"]);
+
     Route::post("/service",[ServiceController::class,"create"]);
     Route::put("/service/{id}",[ServiceController::class,"update"]);
     Route::delete("/service/{id}",[ServiceController::class,"destroy"]);

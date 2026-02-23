@@ -50,6 +50,8 @@ class UserController extends Controller
             $response =  [
 
                     "username" => $authUser->username,
+                    "role" => $authUser->role,
+                    "email" => $authUser->email,
                     "token" => $token,
             ];
             return $this->sendResponse([ $response, "message" => "Sikeres bejelentkezés" ]);
@@ -67,6 +69,12 @@ class UserController extends Controller
         return $success = $this->tokenService->deleteToken( $user );
     }
 
+
+    public function getUserIdByUsername($username){
+        $user=User::where("username",$username)->first();
+
+        return $this->sendResponse($user->id);
+    }
 
 
     public function getUsers(){
