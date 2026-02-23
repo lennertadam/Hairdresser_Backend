@@ -14,8 +14,11 @@ class AdminController extends Controller
 
     //Superadmin level function to give someone admin role
 
-    public function giveAdmin($username){
-        $user=User::where("username",$username)->first();
+    public function giveAdmin($id){
+
+        $user=User::find($id);
+
+     
 
         if ($user->role=="admin"/*Admin Role*/ or "super-admin" /*Superadmin Role*/) {
             return $this->sendError("Művelet nem végrehajtható", "A felhasználó már admin vagy szuperadmin",401);
@@ -26,38 +29,40 @@ class AdminController extends Controller
 
         $user->update();
 
-        return $this->sendResponse( $reservation, "Sikeres módosítás" );
+        return $this->sendResponse( $user, "Sikeres módosítás" );
             
         }
     }
 
-    public function revokeRole($username){
-        $user=User::where("username",$username)->first();
+    public function revokeRole($id){
+
+        $user=User::find($id);
 
         $user->role="user";
 
         $user->update();
 
-        return $this->sendResponse( $reservation, "Sikeres módosítás" );
+        return $this->sendResponse( $user, "Sikeres módosítás" );
     }
 
-    public function giveBarber($username){
-        $user=User::where("username",$username)->first();
+    public function giveBarber($id){
+        $user=User::find($id);
 
         $user->role="barber";
 
         $user->update();
 
-        return $this->sendResponse( $reservation, "Sikeres módosítás" );
+        return $this->sendResponse( $user, "Sikeres módosítás" );
     }
 
-    public function giveInactive($username){
-        $user=User::where("username",$username)->first();
+    public function giveInactive($id){
+
+        $user=User::find($id);
 
         $user->role="inactive";
 
         $user->update();
 
-        return $this->sendResponse( $reservation, "Sikeres módosítás" );
+        return $this->sendResponse( $user, "Sikeres módosítás" );
     }
 }

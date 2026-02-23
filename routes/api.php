@@ -36,10 +36,10 @@ Route::middleware([ "auth:sanctum" ])->group( function() {
     Route::get("/user",[UserController::class,"getUsers"]);
     Route::get("/barber",[UserController::class,"getBarbers"]);
 
-    Route::put("/revokeRole",[AdminController::class,"revokeRole"]);
-    Route::put("/giveAdmin",[AdminController::class,"giveAdmin"]);
-    Route::put("/giveBarber",[AdminController::class,"giveBarber"]);
-    Route::put("/giveInactive",[AdminController::class,"giveInactive"]);
+    Route::put("/revokeRole/{id}",[AdminController::class,"revokeRole"]);
+    Route::put("/giveAdmin/{id}",[AdminController::class,"giveAdmin"]);
+    Route::put("/giveBarber/{id}",[AdminController::class,"giveBarber"]);
+    Route::put("/giveInactive/{id}",[AdminController::class,"giveInactive"]);
 
     //SERVICES
 
