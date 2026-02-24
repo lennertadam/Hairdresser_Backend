@@ -54,6 +54,7 @@ class ServiceController extends Controller
         $service=new Service;
         $service->service=$validRequest["service"];
         $service->required_time=$validRequest["required_time"];
+        $service->price=$validRequest["price"];
 
         $service->save();
 
@@ -73,6 +74,7 @@ class ServiceController extends Controller
         else{
             $service->service=$validRequest["service"];
             $service->required_time=$validRequest["required_time"];
+            $service->price=$validRequest["price"];
 
             $service->update();
 

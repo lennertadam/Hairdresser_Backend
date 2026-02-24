@@ -24,7 +24,7 @@ class ServiceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "service"=>["required","alpha_num"],
+            "service"=>["required","string", "max:255"],
             "required_time"=>["required"], //CANNOT SET IT SO ONLY TIME FORMAT IS ACCEPTED
             "price"=>["required","integer"]
         ];
@@ -33,8 +33,8 @@ class ServiceRequest extends FormRequest
     public function messages(){
         return[
             "service.required"=>"A mező kitöltése kötelező",
-            "service.alpha_num"=>"A mezőben csak betűk és számok lehetnek",
-            //NEED TO CHANGE THIS SO IT DOESN'T ACTIVATE ON PUT WHEN ONLY CHANGING THE TIME
+            "service.string"=>"A mezőben csak betűk lehetnek",
+            "service.max"=>"A mezőben maximum 255 betű lehet",
 
             "required_time.required"=>"A mező kitöltése kötelező",
             "required_time.time"=>"A mezőnek idő formátumban kell átadni az adatot",
