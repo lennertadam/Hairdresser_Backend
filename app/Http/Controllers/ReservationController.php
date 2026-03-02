@@ -48,6 +48,12 @@ class ReservationController extends Controller
 
         return $this->sendResponse($reservations);
     }
+
+    public function getUpcomingReservations(){
+        $reservations=Reservation::where("status","upcoming")->get();
+
+        return $this->sendResponse($reservations);
+    }
     
 
     public function create(ReservationRequest $request){

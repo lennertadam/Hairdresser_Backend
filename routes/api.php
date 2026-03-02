@@ -48,6 +48,8 @@ Route::middleware([ "auth:sanctum" ])->group( function() {
     Route::get("/barberReservation/{barber_id}",[ReservationController::class,"getBarberReservations"]);
     Route::get("/customerReservation/{customer_id}",[ReservationController::class,"getCustomerReservations"]);
     Route::get("/barberActiveReservation/{barber_id}",[ReservationController::class,"getBarberActiveReservations"]);
+    Route::get("/upcomingReservation",[ReservationController::class,"getUpcomingReservations"]);
+
     Route::post("/reservation",[ReservationController::class,"create"]);
     Route::put("/reservation/{id}",[ReservationController::class,"update"]);
     Route::put("/inactiveReservation/{id}",[ReservationController::class,"setInactive"]);

@@ -20,7 +20,7 @@ class AdminController extends Controller
 
      
 
-        if ($user->role=="admin"/*Admin Role*/ or "super-admin" /*Superadmin Role*/) {
+        if ($user->role=="admin"/*Admin Role*/ or $user->role=="super-admin" /*Superadmin Role*/) {
             return $this->sendError("Művelet nem végrehajtható", "A felhasználó már admin vagy szuperadmin",401);
         }
         else {
