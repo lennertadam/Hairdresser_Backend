@@ -54,6 +54,12 @@ class ReservationController extends Controller
 
         return $this->sendResponse($reservations);
     }
+
+    public function getCompleteReservations(){
+        $reservations=Reservation::where("status","complete")->get();
+
+        return $this->sendResponse($reservations);
+    }
     
 
     public function create(ReservationRequest $request){
