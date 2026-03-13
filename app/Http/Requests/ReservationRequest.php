@@ -27,7 +27,8 @@ class ReservationRequest extends FormRequest
             "price"=>["required","integer"],
             "barber_id"=>["required","integer"],
             "customer_id"=>["required","integer"],
-            "active"=>["required","boolean"]
+            "active"=>["required","boolean"],
+            "status"=>["required","string"]
         ];
     }
 
@@ -49,7 +50,10 @@ class ReservationRequest extends FormRequest
             "customer_id.integer"=>"A mezőnek egész számnak kell lennie",
 
             "active.required"=>"A mező kitöltése kötelező",
-            "active.boolean"=>"A mezőnek igaz/hamis értéknek kell lennie"
+            "active.boolean"=>"A mezőnek igaz/hamis értéknek kell lennie",
+
+            "active.required"=>"A mező kitöltése kötelező",
+            "active.boolean"=>"A mezőnek szövegnek kell lennie"
         ];
     }
 }

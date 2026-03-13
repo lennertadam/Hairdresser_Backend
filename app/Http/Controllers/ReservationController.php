@@ -77,6 +77,7 @@ class ReservationController extends Controller
         $reservation->barber_id=$validRequest["barber_id"];
         $reservation->customer_id=$validRequest["customer_id"];
         $reservation->active=$validRequest["active"];
+        $reservation->status=$validRequest["status"];
 
         $reservation->save();
 
@@ -103,6 +104,7 @@ class ReservationController extends Controller
             $reservation->barber_id=$validRequest["barber_id"];
             $reservation->customer_id=$validRequest["customer_id"];
             $reservation->active=$validRequest["active"];
+            $reservation->status=$validRequest["status"];
 
             
 
