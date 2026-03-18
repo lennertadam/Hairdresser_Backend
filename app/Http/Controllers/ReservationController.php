@@ -132,7 +132,9 @@ class ReservationController extends Controller
     }
 
 
-    public function setInactive($id){
+    //--Set status functions
+
+    public function setComplete($id){
         $reservation=Reservation::find($id);
 
         if( is_null( $reservation )) {
@@ -142,6 +144,40 @@ class ReservationController extends Controller
         }
         else{
             $reservation->active=false;
+            $reservation->status="complete";
+            $reservation->update();
+            return $this->sendResponse( $reservation, "Sikeres inaktivitás jelölés" );
+        }
+    }
+
+    public function setCancelled($id){
+        $reservation=Reservation::find($id);
+
+        if( is_null( $reservation )) {
+
+            return $this->sendError( "Művelet nem végrehajtható", "Nem létezik ilyen rekord", 405 );
+
+        }
+        else{
+            $reservation->active=false;
+            $reservation->status="cancelled";
+            $reservation->update();
+            return $this->sendResponse( $reservation, "Sikeres inaktivitás jelölés" );
+        }
+    }
+
+
+    public function setInvalid($id){
+        $reservation=Reservation::find($id);
+
+        if( is_null( $reservation )) {
+
+            return $this->sendError( "Művelet nem végrehajtható", "Nem létezik ilyen rekord", 405 );
+
+        }
+        else{
+            $reservation->active=false;
+            $reservation->status="invalid";
             $reservation->update();
             return $this->sendResponse( $reservation, "Sikeres inaktivitás jelölés" );
         }

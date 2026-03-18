@@ -53,7 +53,11 @@ Route::middleware([ "auth:sanctum" ])->group( function() {
 
     Route::post("/reservation",[ReservationController::class,"create"]);
     Route::put("/reservation/{id}",[ReservationController::class,"update"]);
-    Route::put("/inactiveReservation/{id}",[ReservationController::class,"setInactive"]);
+
+    Route::put("/completeReservation/{id}",[ReservationController::class,"setComplete"]);
+    Route::put("/cancelReservation/{id}",[ReservationController::class,"setCancelled"]);
+    Route::put("/invalidReservation/{id}",[ReservationController::class,"setInvalid"]);
+
     Route::delete("/reservation/{id}",[ReservationController::class,"destroy"]);
     
 });
