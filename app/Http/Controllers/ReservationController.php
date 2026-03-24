@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reservation;
+use App\Models\User;
 use App\Http\Requests\ReservationRequest;
+use Carbon\Carbon;
 
 use App\Traits\ResponseTrait;
 
@@ -64,10 +66,35 @@ class ReservationController extends Controller
 
     public function create(ReservationRequest $request){
         $validRequest=$request->validated();
+        // $barber=User::where(["id"=>$validRequest["barber_id"],"role"=>"barber"])->get();
+        // $checkReservations=Reservation::where(["barber_id"=>$validRequest["barber_id"],"status"=>"upcoming"])->get();
 
         if($validRequest["start_time"]>$validRequest["end_time"]){
-                return $this->sendError("Művelet nem végrehajtható","A kezdeti időpont később van mint a vég időpont",400);
+            return $this->sendError("Művelet nem végrehajtható","A kezdeti időpont később van mint a vég időpont",400);
         }
+
+        if (Carbon::parse($validRequest["start_time"])->lte(Carbon::now())) {
+            return $this->sendError("Művelet nem végrehajtható","A kezdeti időpont korábban van mint a jelen",400);
+        }
+
+        // if(!$barber){
+        //     return $this->sendError("Művelet nem végrehajtható","Csak borbélyhoz tud időpontot foglalni",400);
+        // }
+
+        // foreach($checkReservations as $res){
+        //     if (
+        //     ($res["start_time"]<$validRequest["start_time"] && $res["end_time"]>$validRequest["start_time"])
+        //     ||
+        //     ($res["start_time"]<$validRequest["end_time"] && $res["end_time"]>$validRequest["end_time"])
+        //     ||
+        //     ($res["start_time"]=$validRequest["start_time"])
+        //     ||
+        //     ($res["end_time"]=$validRequest["end_time"])
+        //     ) {
+        //         return $this->sendError("Művelet nem végrehajtható","A foglalás ütközik egy már létező foglalással",400);
+        //     }
+        // }
+        
 
         $reservation=new Reservation;
         
@@ -98,6 +125,30 @@ class ReservationController extends Controller
             if($validRequest["start_time"]>$validRequest["end_time"]){
                 return $this->sendError("Művelet nem végrehajtható","A kezdeti időpont később van mint a vég időpont",400);
             }
+
+            if (Carbon::parse($validRequest["start_time"])->lte(Carbon::now())) {
+            return $this->sendError("Művelet nem végrehajtható","A kezdeti időpont korábban van mint a jelen",400);
+            }
+
+        // $checkReservations=Reservation::where(["barber_id"=>$validRequest["barber_id"],"status"=>"upcoming"])->get();
+        // foreach($checkReservations as $res){
+        //     if ($res["start_time"]<$validRequest["start_time"] && $res["end_time"]>$validRequest["start_time"]){
+        //         return $this->sendError("Művelet nem végrehajtható","A foglalás ütközik egy már létező foglalással",400);
+        //         }
+                
+        //     elseif($res["start_time"]<$validRequest["end_time"] && $res["end_time"]>$validRequest["end_time"]){
+        //         return $this->sendError("Művelet nem végrehajtható","A foglalás ütközik egy már létező foglalással",400);
+        //         }
+
+        //     elseif($res["start_time"]=$validRequest["start_time"]){
+        //         return $this->sendError("Művelet nem végrehajtható","A foglalás ütközik egy már létező foglalással",400);
+        //         }
+
+        //     elseif($res["end_time"]=$validRequest["end_time"]) {
+        //         return $this->sendError("Művelet nem végrehajtható","A foglalás ütközik egy már létező foglalással",400);
+        //         }
+        //     }
+
             $reservation->start_time=$validRequest["start_time"];
             $reservation->end_time=$validRequest["end_time"];
             $reservation->price=$validRequest["price"];
