@@ -25,7 +25,7 @@ class ServiceRequest extends FormRequest
     {
         return [
             "service"=>["required","string", "max:255"],
-            "required_time"=>["required"], //CANNOT SET IT SO ONLY TIME FORMAT IS ACCEPTED
+            "required_time"=>["required"],
             "price"=>["required","integer"]
         ];
     }

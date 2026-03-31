@@ -23,25 +23,6 @@ class ServiceController extends Controller
     }
 
 
-    //Didn't work!
-
-    // public function getServices(){
-    //     $services=Service::where("reservation")->get();
-
-    //     return $this->sendResponse($services);
-    // }
-
-
-    //DIDN'T WORK!!!
-
-    // public function getServices(){
-    //     $sql="SELECT * FROM services";
-
-    //     $services=DB::select($sql);
-
-    //     return $this->sendResponse($services);
-    // }
-
     public function getService($id){
         $service=Service::find($id);
 

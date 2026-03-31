@@ -28,7 +28,7 @@ class RegisterRequest extends FormRequest
             "username"=>["required","between:3,20","unique:users,username"],
             "name"=>["required"],
             "email"=>["required","email","unique:users,email"],
-            "password"=>["required",/*"confirmed",*/ Password::min(3)->mixedCase()->numbers()->symbols()],
+            "password"=>["required", Password::min(3)->mixedCase()->numbers()->symbols()],
             /*Role set to "user" in RegisterService*/
         ];
     }

@@ -12,20 +12,18 @@ class AdminController extends Controller
 {
     use ResponseTrait;
 
-    //Superadmin level function to give someone admin role
-
     public function giveAdmin($id){
 
         $user=User::find($id);
 
      
 
-        if ($user->role=="admin"/*Admin Role*/ or $user->role=="super-admin" /*Superadmin Role*/) {
+        if ($user->role=="admin" or $user->role=="super-admin" ) {
             return $this->sendError("Művelet nem végrehajtható", "A felhasználó már admin vagy szuperadmin",401);
         }
         else {
 
-        $user->role="admin";//Admin Role
+        $user->role="admin";
 
         $user->update();
 
