@@ -22,7 +22,7 @@ class ReservationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "start_time"=>["required","date"], //REQUIRES A TIME IN DATETIME FORMAT
+            "start_time"=>["required","date"],
             "end_time"=>["required","date"],
             "price"=>["required","integer"],
             "barber_id"=>["required","integer"],
