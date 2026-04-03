@@ -25,8 +25,9 @@ class RegisterService
         $user->password = Hash::make( $data[ "password" ]);
         $user->role = "user";
 
-
         $user->save();
+
+        /**/Mail::to( $user->email )->send(new RegisterMail($user));
 
         return $this->sendResponse( $data, "Sikeres regisztráció." );
         }
