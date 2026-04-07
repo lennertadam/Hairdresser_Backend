@@ -1,8 +1,79 @@
 # Backend Dokumentáció
 
-## Táblák
+## Fájlok:
 
-## Végpontok
+### -Kontrollerek
+App/Http/Controllers/AdminController.php
+App/Http/Controllers/Controller.php
+App/Http/Controllers/ReservationController.php
+App/Http/Controllers/ServiceController.php
+App/Http/Controllers/UserController.php
+
+### -Middleware-ek
+App/Http/Middleware/AdminMiddleware.php
+
+### -Kérések
+App/Http/Requests/LoginRequest.php
+App/Http/Requests/RegisterRequest.php
+App/Http/Requests/ReservationRequest.php
+App/Http/Requests/ServiceRequest.php
+
+### -E-mail-ek
+App/Mail/RegisterMail.php
+
+### -Modellek
+App/Models/Reservation.php
+App/Models/Service.php
+App/Models/User.php
+
+### -Szolgáltatások
+App/Services/AbilityService.php
+App/Services/RegisterService.php
+App/Services/TokenService.php
+
+### -Trait-ek
+App/Traits/ResponseTrait.php
+
+### -Seeder-ek
+Database/Seeders/DatabaseSeeder.php
+Database/Seeders/ReservationSeeder.php (Reservation.sql alapján)
+Database/Seeders/ServiceSeeder.php (Service.sql alapján)
+Database/Seeders/UserSeeder.php
+
+### -Adatbázis
+Database/database.sqlite
+
+### -Nézetek
+Resources/views/emails/registered.blade.php
+
+## Táblák:
+
+|Tábla|Mező|Típus|Idegen Kulcs|
+|-----|----|-----|------------|
+|Users|id|integer|-|
+|Users|username|varchar|-|
+|Users|name|varchar|-|
+|Users|email|string|-|
+|Users|password|varchar|-|
+|Users|role|varchar|-|
+|Reservations|id|integer|-|
+|Reservations|start_time|datetime|-|
+|Reservations|price|double|-|
+|Reservations|barber_id|integer|users->id|
+|Reservations|customer_id|integer|users->id|
+|Reservations|active|boolean|-|
+|Reservations|end_time|datetime|-|
+|Reservations|status|string|-|
+|Reservation_service|id|integer|-|
+|Reservation_service|reservation|integer|reservations->id|
+|Reservation_service|services|integer|services->id|
+|Services|id|integer|-|
+|Services|service|varchar|-|
+|Services|required_time|time|-|
+|Services|price|integer|-|
+
+
+## Végpontok:
 
 |Tábla|CRUD|Végpont|Leírás|Jogkör|
 |-----|----|-------|------|------|
