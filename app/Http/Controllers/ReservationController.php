@@ -7,6 +7,7 @@ use App\Models\Reservation;
 use App\Models\User;
 use App\Http\Requests\ReservationRequest;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 use App\Traits\ResponseTrait;
 
@@ -90,6 +91,8 @@ class ReservationController extends Controller
         $reservation->status=$validRequest["status"];
 
         $reservation->save();
+
+        /*Mail Here*/ 
 
         return $this->sendResponse($reservation,"Sikeres írás adatbázisba");
     }

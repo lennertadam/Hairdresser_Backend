@@ -109,3 +109,21 @@ Resources/views/emails/registered.blade.php
 |Reservations|PUT|/cancelReservation/{id}|Foglalás lemondásának jelölése id alapján|Admin|
 |Reservations|PUT|/invalidReservation/{id}|Foglalás érvénytelennek jelölése id alapján|Admin|
 |Reservations|DELETE|/reservation/{id}|Foglalás törlése id alapján|Superadmin|
+
+## E-mail
+Cím: 2026barbershop@gmail.com
+Jelszó: Barbershop2026
+
+Kódok 2 lépcsős verifikációhoz:
+9272 8470
+4098 4594
+2552 5388
+4432 4926
+9216 0188
+0117 7182
+8492 8846
+8427 4159
+5809 8323
+6411 8994
+
+SMTP Alkalmazás-jelszó: feas ksps nimf nxhv
