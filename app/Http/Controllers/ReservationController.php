@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Http\Requests\ReservationRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
+use App\Events\ReservationMade;
 
 use App\Traits\ResponseTrait;
 
@@ -92,7 +93,12 @@ class ReservationController extends Controller
 
         $reservation->save();
 
-        /*Mail Here*/ 
+        event(new ReservationMade([
+            "start_time"=>$validRequest["start_time"],
+            "end_time"=>$validRequest["end_time"],
+            "barber_id"=>$validRequest["barber_id"],
+            "customer_id"=>$validRequest["customer_id"]
+            ]));
 
         return $this->sendResponse($reservation,"Sikeres írás adatbázisba");
     }

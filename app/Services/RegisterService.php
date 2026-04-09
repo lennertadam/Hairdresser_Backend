@@ -29,7 +29,7 @@ class RegisterService
 
         $user->save();
 
-        /**/Mail::to( $user->email )->send(new RegisterMail($user));
+        Mail::to( $user->email )->send(new RegisterMail($user));
 
         return $this->sendResponse( $data, "Sikeres regisztráció." );
         }

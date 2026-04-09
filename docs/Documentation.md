@@ -2,6 +2,9 @@
 
 ## Fájlok:
 
+### Események
+App/Events/ReservationMade.php
+
 ### -Kontrollerek
 App/Http/Controllers/AdminController.php
 App/Http/Controllers/Controller.php
@@ -18,8 +21,12 @@ App/Http/Requests/RegisterRequest.php
 App/Http/Requests/ReservationRequest.php
 App/Http/Requests/ServiceRequest.php
 
+### Listener-ek
+App/Listeners/SendReservationEmail.php
+
 ### -E-mail-ek
 App/Mail/RegisterMail.php
+App/Mail/ReservationMadeMail.php
 
 ### -Modellek
 App/Models/Reservation.php
@@ -45,6 +52,7 @@ Database/database.sqlite
 
 ### -Nézetek
 Resources/views/emails/registered.blade.php
+Resources/views/emails/reserved.blade.php
 
 ## Táblák:
 
