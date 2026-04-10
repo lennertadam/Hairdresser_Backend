@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Reservation;
 
 use App\Traits\ResponseTrait;
 
@@ -36,6 +37,15 @@ class AdminController extends Controller
 
         $user=User::find($id);
 
+        if ($user->role=="barber") {
+            Reservation::where(["barber_id"=>$user->id,"status"=>"upcoming"])
+            ->get()
+            ->each(function (Reservation $reservation){
+                $reservation->status="invalid";
+                $reservation->update();
+            });
+        }
+
         $user->role="user";
 
         $user->update();
@@ -56,6 +66,15 @@ class AdminController extends Controller
     public function giveInactive($id){
 
         $user=User::find($id);
+
+        if ($user->role=="barber") {
+            Reservation::where(["barber_id"=>$user->id,"status"=>"upcoming"])
+            ->get()
+            ->each(function (Reservation $reservation){
+                $reservation->status="invalid";
+                $reservation->update();
+            });
+        }
 
         $user->role="inactive";
 
