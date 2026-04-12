@@ -42,6 +42,7 @@ class AdminController extends Controller
             ->get()
             ->each(function (Reservation $reservation){
                 $reservation->status="invalid";
+                $reservation->active=0;
                 $reservation->update();
             });
         }
@@ -72,6 +73,7 @@ class AdminController extends Controller
             ->get()
             ->each(function (Reservation $reservation){
                 $reservation->status="invalid";
+                $reservation->active=0;
                 $reservation->update();
             });
         }

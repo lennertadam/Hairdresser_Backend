@@ -1,5 +1,13 @@
 # Backend Dokumentáció
 
+
+
+## Telepítés:
+composer install
+php artisan migrate
+php artisan DB:seed
+php artisan serve
+
 ## Fájlok:
 
 ### Események
@@ -79,6 +87,33 @@ Resources/views/emails/reserved.blade.php
 |Services|service|varchar|-|
 |Services|required_time|time|-|
 |Services|price|integer|-|
+
+## Alapértelmezett Adatok:
+
+### -Users Tábla
+|Id|Username|Name|Email|Password|Role|
+|--|--------|----|-----|--------|----|
+|1|User1|Felhasználó Ferdinánd|Ferdinánd@email.lan|Aa123!|super-admin|
+|2|User2|Felhasználó Fülöp|Fülöp@email.lan|Aa123!|admin|
+|3|User3|Felhasználó Feri|Feri@email.lan|Aa123!|barber|
+|4|User4|Felhasználó Franciska|Franciska@email.lan|Aa123!|user|
+|5|User5|Felhasználó Fred|Fred@email.lan|Aa123!|inactive|
+
+### -Reservations Tábla
+|Id|Start Time|Price|Barber Id|Customer Id|Active|End Time|Status|
+|--|----------|-----|---------|-----------|------|--------|------|
+|1|2030-01-01 00:00:01|1000.0|3|1|true|2030-01-01 00:23:59|upcoming|
+|2|1999-01-01 00:00:01|5000.0|3|2|false|1999-01-01 00:23:59|complete|
+|3|2004-01-01 00:00:01|300.0|3|4|false|2004-01-01 00:23:59|cancelled|
+|4|1865-01-01 00:00:01|10.0|3|5|false|1995-01-01 00:23:59|invalid|
+
+### -Services Tábla
+|Id|Service|Required Time|Price|
+|--|-------|-------------|-----|
+|1|Haj Vágás|00:30:00|200|
+|2|Haj Festés|00:45:00|500|
+|3|Borotválás|00:20:00|1000|
+|4|Szabadnap|12:00:00|0|
 
 
 ## Végpontok:
