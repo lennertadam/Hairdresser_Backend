@@ -88,6 +88,10 @@ Resources/views/emails/reserved.blade.php
 |Services|required_time|time|-|
 |Services|price|integer|-|
 
+## Képes Adatbázis Terv:
+
+![Adatbázis Terv](database.png)
+
 ## Alapértelmezett Adatok:
 
 ### -Users Tábla
