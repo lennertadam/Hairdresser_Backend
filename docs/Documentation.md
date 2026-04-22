@@ -4,63 +4,82 @@
 
 ## Telepítés:
 composer install
+
 php artisan migrate
+
 php artisan DB:seed
+
 php artisan serve
 
 ## Fájlok:
 
 ### Események
-App/Events/ReservationMade.php
+App/Events/ReservationMade.php (Időpont lefoglalásakor indul ReservationController-ben, SendReservationEmail-nek jelez)
 
 ### -Kontrollerek
-App/Http/Controllers/AdminController.php
-App/Http/Controllers/Controller.php
-App/Http/Controllers/ReservationController.php
-App/Http/Controllers/ServiceController.php
-App/Http/Controllers/UserController.php
+App/Http/Controllers/AdminController.php (Admin eseményeket kezel (pl.: Regisztráció, Jogkörök kezelése))
+
+App/Http/Controllers/Controller.php (Minden kontroller ezt az osztályt örökli)
+
+App/Http/Controllers/ReservationController.php (Foglalással kapcsolatos eseményeket kezeli)
+
+App/Http/Controllers/ServiceController.php (Szolgáltatásokkal kapcsolatos eseményeket kezeli)
+
+App/Http/Controllers/UserController.php (Felhasználókkal kapcsolatos eseményeket kezeli)
 
 ### -Middleware-ek
-App/Http/Middleware/AdminMiddleware.php
+App/Http/Middleware/AdminMiddleware.php (Felhasználó jogköre alapján engedélyez/tilt végpontokat)
 
 ### -Kérések
-App/Http/Requests/LoginRequest.php
-App/Http/Requests/RegisterRequest.php
-App/Http/Requests/ReservationRequest.php
-App/Http/Requests/ServiceRequest.php
+App/Http/Requests/LoginRequest.php (Bejelentkezés formai követelményei)
+
+App/Http/Requests/RegisterRequest.php (Regisztráció formai követelményei)
+
+App/Http/Requests/ReservationRequest.php (Foglalás formai követelményei)
+
+App/Http/Requests/ServiceRequest.php (Szolgáltatás formai követelményei)
 
 ### Listener-ek
-App/Listeners/SendReservationEmail.php
+App/Listeners/SendReservationEmail.php (ReservationMade eseményt vár, ReservationMadeMail küldését kezdeményezi)
 
 ### -E-mail-ek
-App/Mail/RegisterMail.php
-App/Mail/ReservationMadeMail.php
+App/Mail/RegisterMail.php (Sikeres regisztráció esetén küldött e-mail)
+
+App/Mail/ReservationMadeMail.php (Sikeres foglalás esetén küldött e-mail)
 
 ### -Modellek
-App/Models/Reservation.php
-App/Models/Service.php
-App/Models/User.php
+App/Models/Reservation.php (Foglalás modelje)
+
+App/Models/Service.php (Szolgáltatás modelje)
+
+App/Models/User.php (Felhasználó modelje)
 
 ### -Szolgáltatások
-App/Services/AbilityService.php
-App/Services/RegisterService.php
-App/Services/TokenService.php
+App/Services/AbilityService.php (Jogköröket kezelő szolgáltatás)
+
+App/Services/RegisterService.php (Regisztrációt kezelő szolgáltatás)
+
+App/Services/TokenService.php (Token-eket kezelő szolgáltatás)
 
 ### -Trait-ek
-App/Traits/ResponseTrait.php
+App/Traits/ResponseTrait.php (Szabványos válaszok küldését kezelő trait)
 
 ### -Seeder-ek
-Database/Seeders/DatabaseSeeder.php
-Database/Seeders/ReservationSeeder.php (Reservation.sql alapján)
-Database/Seeders/ServiceSeeder.php (Service.sql alapján)
-Database/Seeders/UserSeeder.php
+Database/Seeders/DatabaseSeeder.php (Adatbázist feltöltő seeder, meghívja a többi seeder-t)
+
+Database/Seeders/ReservationSeeder.php (Reservation.sql alapján) (Alapértelmezett foglalások seeder-e)
+
+Database/Seeders/ServiceSeeder.php (Service.sql alapján) (Alapértelmezett szolgáltatások seeder-e)
+
+Database/Seeders/UserSeeder.php (Alapértelmezett felhasználók seeder-e)
 
 ### -Adatbázis
 Database/database.sqlite
 
 ### -Nézetek
-Resources/views/emails/registered.blade.php
-Resources/views/emails/reserved.blade.php
+Resources/views/emails/registered.blade.php (Regisztációs e-mail tartalma)
+
+Resources/views/emails/reserved.blade.php (Sikeres foglaláskori e-mail tartalma)
 
 ## Táblák:
 
@@ -102,6 +121,7 @@ Resources/views/emails/reserved.blade.php
 |3|User3|Felhasználó Feri|Feri@email.lan|Aa123!|barber|
 |4|User4|Felhasználó Franciska|Franciska@email.lan|Aa123!|user|
 |5|User5|Felhasználó Fred|Fred@email.lan|Aa123!|inactive|
+|6|User6|Felhasználó Fickó|Ficko@email.lan|Aa123!|barber|
 
 ### -Reservations Tábla
 |Id|Start Time|Price|Barber Id|Customer Id|Active|End Time|Status|
@@ -117,7 +137,7 @@ Resources/views/emails/reserved.blade.php
 |1|Haj Vágás|00:30:00|200|
 |2|Haj Festés|00:45:00|500|
 |3|Borotválás|00:20:00|1000|
-|4|Szabadnap|12:00:00|0|
+|4|Szabadnap|13:00:00|0|
 
 
 ## Végpontok:
@@ -157,7 +177,18 @@ Resources/views/emails/reserved.blade.php
 |Reservations|PUT|/invalidReservation/{id}|Foglalás érvénytelennek jelölése id alapján|Admin|
 |Reservations|DELETE|/reservation/{id}|Foglalás törlése id alapján|Superadmin|
 
-## E-mail
+## Ismert Hibák:
+Kontrollerek funkciói nem Service-ekből működnek
+
+A nem autentikációval kapcsolatos adatok tárolására szolgáló Profile tábla hiányzik
+
+Egy foglalásnak csak egy szolgáltatása lehet
+
+ResponseTrait nincs bevezetve Request-ekben
+
+Foglalás változtatásáról nem küld e-mail-t a backend
+
+## E-mail adatok:
 Cím: 2026barbershop@gmail.com
 Jelszó: Barbershop2026
 

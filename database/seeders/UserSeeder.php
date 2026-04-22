@@ -53,5 +53,13 @@ class UserSeeder extends Seeder
             "role"=>"inactive",
             "email"=>"Fred@email.lan"
         ]);
+
+        DB::table( "users" )->insert([
+            "username"=>"User6",
+            "name"=>"Felhasználó Fickó",
+            "password"=>bcrypt("Aa123!"),
+            "role"=>"barber",
+            "email"=>"Ficko@email.lan"
+        ]);
     }
 }

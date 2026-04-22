@@ -23,11 +23,11 @@ Route::post("/login",[UserController::class,"login"]);
 Route::get("/service",[ServiceController::class,"getServices"]);
 Route::get("/service/{id}",[ServiceController::class,"getService"]);
 
+Route::get("/user",[UserController::class,"getUsers"]);
+
 Route::middleware([ "auth:sanctum" ])->group( function() {
     Route::post( "/logout", [ UserController::class, "logout" ]);
 
-
-    Route::get("/user",[UserController::class,"getUsers"]);
     Route::get("/barber",[UserController::class,"getBarbers"]);
 
     Route::put("/revokeRole/{id}",[AdminController::class,"revokeRole"]);
